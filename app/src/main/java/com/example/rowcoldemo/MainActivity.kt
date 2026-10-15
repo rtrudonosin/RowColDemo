@@ -1,5 +1,13 @@
 package com.example.rowcoldemo
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,10 +28,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RowColDemoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MainScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -31,17 +36,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MainScreen(modifier: Modifier = Modifier) {
+
+}
+
+@Composable
+fun TextCell(text: String, modifier: Modifier = Modifier) {
+    val cellModifier = modifier
+        .padding(4.dp)
+        .size(100.dp, 100.dp)
+        .border(width = 4.dp, color = Color.Black)
+    Text(text = text, cellModifier.then(modifier),
+        fontSize = 80.sp,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Center)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     RowColDemoTheme {
-        Greeting("Android")
+        MainScreen()
     }
 }
