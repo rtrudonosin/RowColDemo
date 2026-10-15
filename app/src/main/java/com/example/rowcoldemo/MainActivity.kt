@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.rowcoldemo.ui.theme.RowColDemoTheme
@@ -43,13 +44,14 @@ fun MainScreen(modifier: Modifier = Modifier) {
     Row {
         Text(
             text = "Large Text\n\nMore Text",
-            Modifier.alignBy(LastBaseline),
+            Modifier.alignBy(FirstBaseline),
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold
         )
         Text(
             text = "Small Text",
-            Modifier.alignByBaseline(),
+            modifier = Modifier.paddingFrom(
+                alignmentLine = FirstBaseline, before = 80.dp, after = 0.dp),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold
         )
